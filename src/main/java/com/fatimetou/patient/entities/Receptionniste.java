@@ -7,17 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Receptionniste extends Person {
+@Builder
+public class Receptionniste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +24,7 @@ public class Receptionniste extends Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "futilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
+
+    @OneToOne
+    private User user;
 }

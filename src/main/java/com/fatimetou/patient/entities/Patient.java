@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Patient extends Person{
+public class Patient{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idP;
@@ -21,6 +21,9 @@ public class Patient extends Person{
     private String nationnalité;
 
     private String groupeS;
+
+    @OneToOne
+    private User user;
 
     @ManyToOne
     private Receptionniste receptionniste;

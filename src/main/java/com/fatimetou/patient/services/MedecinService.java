@@ -33,7 +33,7 @@ public class MedecinService {
 
         Medecin medecin = utilisateur.getMedecin();
         if (medecin != null) {
-            return medecin.getNom();
+            return medecin.getUser().getNom();
         } else {
 
             return "Utilisateur non associé à un médecin";

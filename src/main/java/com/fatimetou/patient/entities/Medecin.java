@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Medecin extends Person {
+public class Medecin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +26,8 @@ public class Medecin extends Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "futilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
+
+    @OneToOne
+    private User user;
 
 }

@@ -19,8 +19,8 @@ public class PatientService {
     public String modifierPatient(Patient updatedPatient, long idP) {
         Patient patient = patientRepository.findById(idP).orElse(null);
         if (patient != null) {
-            if (updatedPatient.getNom() != null) {
-                patient.setNom(updatedPatient.getNom());
+            if (updatedPatient.getUser().getNom() != null) {
+                patient.getUser().setNom(updatedPatient.getUser().getNom());
 
             }
             if (updatedPatient.getDateNaissance() != null) {
@@ -50,8 +50,8 @@ public class PatientService {
     public String getPatientName(Long idP) {
         Patient patient = patientRepository.findById(idP).orElse(null);
 
-        if (patient.getNom() != null) {
-            return patient.getNom();
+        if (patient.getUser().getNom() != null) {
+            return patient.getUser().getNom();
         } else {
 
             return "null";
