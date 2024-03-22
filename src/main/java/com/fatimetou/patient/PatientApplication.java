@@ -1,5 +1,6 @@
 package com.fatimetou.patient;
 
+import com.fatimetou.patient.dtos.LoginRequest;
 import com.fatimetou.patient.entities.Patient;
 import com.fatimetou.patient.entities.Receptionniste;
 import com.fatimetou.patient.entities.User;
@@ -7,6 +8,7 @@ import com.fatimetou.patient.repositories.MedecinRepository;
 import com.fatimetou.patient.repositories.PatientRepository;
 import com.fatimetou.patient.repositories.ReceptionnisteRepository;
 import com.fatimetou.patient.repositories.UserRepository;
+import com.fatimetou.patient.services.AuthService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +32,7 @@ public class PatientApplication {
 			//patientRepository.save(p1);
 		//};
 	//}
-    @Bean
+    //@Bean
 	CommandLineRunner commandLineRunner(UserRepository userRepository,ReceptionnisteRepository receptionnisteRepository,PasswordEncoder passwordEncoder){
 		return args -> {
 			Receptionniste receptionniste=receptionnisteRepository.save(Receptionniste.builder().build());
@@ -43,5 +45,13 @@ public class PatientApplication {
 			userRepository.save(user);
 		};
 
+	}
+	@Bean
+	CommandLineRunner commandLineRunner(AuthService authService){
+		return args -> {
+			LoginRequest loginRequest = new LoginRequest("user@gmail.com","12345");
+			String res = authService.login(loginRequest);
+			System.out.println(res);
+		};
 	}
 }

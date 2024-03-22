@@ -26,6 +26,14 @@ public class User implements UserDetails {
     private String password;
     private String adresse;
 
+    public User(Long id, String nom, String prenom, String email, String password) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+    }
+
     @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
     private Patient patient;
     @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
