@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RendezVousService {
@@ -18,8 +19,8 @@ public class RendezVousService {
     public RendezVous modifierRdv(RendezVous rendezVous,long idRdv) {
 
         RendezVous rendv = rendezVousRepository.findById(idRdv).orElse(null);
-        if (rendezVous.getName() != null) {
-            rendv.setName(rendezVous.getName());
+        if (rendezVous.getHeure() != null) {
+            rendv.setHeure(rendezVous.getHeure());
         }
         if (rendezVous.getDate() != null) {
             rendv.setDate(rendezVous.getDate());
@@ -33,4 +34,14 @@ public class RendezVousService {
     public List<RendezVous> listerRdv(){
         return rendezVousRepository.findAll();
     }
+
+    public boolean delete(long idRdv){
+        Optional<RendezVous> optionalRendezVous=rendezVousRepository.findById(idRdv);
+        if (optionalRendezVous.isPresent()){
+            rendezVousRepository.deleteById(idRdv);
+            return true;
+        }
+            return false;
+    }
+
 }

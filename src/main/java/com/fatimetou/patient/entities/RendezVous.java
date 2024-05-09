@@ -4,6 +4,7 @@ import com.fatimetou.patient.enums.RendezVousStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -16,15 +17,16 @@ public class RendezVous {
 
     @Column(nullable = false, updatable = true)
     private Date date;
+    private String motif;
 
     private RendezVousStatus status;
 
-    private String name;
+    private LocalTime heure;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Patient patient;
 
-    @ManyToOne(optional = false)
-    private RendezVous rendezVous;
+    @ManyToOne(optional = true)
+    private Medecin medecin;
 }
 

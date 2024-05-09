@@ -1,6 +1,7 @@
 package com.fatimetou.patient.services;
 
 import com.fatimetou.patient.entities.Patient;
+import com.fatimetou.patient.exceptions.PatientNotFoundException;
 import com.fatimetou.patient.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +17,19 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-    public String modifierPatient(Patient updatedPatient, long idP) {
-        Patient patient = patientRepository.findById(idP).orElse(null);
-        if (patient != null) {
+    public Patient modifierPatient(Patient updatedPatient, Long id) {
+        Patient patient = patientRepository.findById(id).orElseThrow(()->new PatientNotFoundException("patient not found !"));
             if (updatedPatient.getNom() != null) {
                 patient.setNom(updatedPatient.getNom());
-
             }
             if (updatedPatient.getDateNaissance() != null) {
                 patient.setDateNaissance(updatedPatient.getDateNaissance());
-
             }
-            patientRepository.save(patient);
-            return "Patient  updated !";
+        if (updatedPatient.getPrenom() != null) {
+            patient.setPrenom(updatedPatient.getPrenom());
         }
 
-        else {
-            return "Patient not updated !";
-
-        }
-
+           return patientRepository.save(patient);
     }
 
     public List<Patient> listerPatient() {

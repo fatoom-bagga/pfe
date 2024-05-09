@@ -5,27 +5,46 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Patient extends Person{
+
+public class Patient{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idP;
+    private long id;
+    private String nom;
+    private String prenom;
+    private String adresse;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateNaissance;
+    private String  dateNaissance;
 
     private String nationnalité;
 
-    private String groupeS;
+    private String lieuNaiss;
 
     @ManyToOne
     private Receptionniste receptionniste;
 
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Consultation> consultations ;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<RendezVous> rendezVous ;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Ordonnance> ordonnances;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fiche_id", referencedColumnName = "id")
     private Fiche fiche;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Bilan> bilans;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Certificat> certificats;
 }

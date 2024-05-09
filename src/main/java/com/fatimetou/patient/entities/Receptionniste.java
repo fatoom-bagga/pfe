@@ -1,29 +1,30 @@
 package com.fatimetou.patient.entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Receptionniste extends Person {
 
+public class Receptionniste  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idR;
+    private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "futilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;
+    private String email;
+    private String mdp;
+    private String type;
+    @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL)
+    private List<Medecin> medecins;
+    @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL)
+    private List<Patient> patients;
+
 }

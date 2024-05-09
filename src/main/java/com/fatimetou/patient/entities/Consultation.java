@@ -32,9 +32,9 @@ public class Consultation {
     @Column(nullable = false, updatable = true)
     private int diagnostique;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Patient patient;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Medecin medecin;
 }

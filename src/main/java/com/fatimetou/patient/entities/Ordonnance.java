@@ -5,6 +5,9 @@ import org.hibernate.type.TrueFalseConverter;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -13,15 +16,15 @@ public class Ordonnance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idOrd;
 
-    @Column(nullable = false, unique = true)
-    private String nomOrd;
-
-    @Column(nullable = false, unique = false)
-    private String observation;
-
     @ManyToOne(optional = false)
     private Patient patient;
 
     @ManyToOne(optional = false)
     private Medecin medecin;
+    private Date date;
+
+    @OneToMany(mappedBy = "ordonnance", cascade = CascadeType.ALL)
+    private List<Medicament> medicaments;
+
+
 }

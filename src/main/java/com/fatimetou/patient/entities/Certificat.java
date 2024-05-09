@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -15,6 +17,8 @@ public class Certificat {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private Date date;
     @ManyToOne(optional = false)
     private Patient patient;
 

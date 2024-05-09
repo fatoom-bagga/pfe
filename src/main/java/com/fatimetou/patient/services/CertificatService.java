@@ -6,6 +6,9 @@ import com.fatimetou.patient.entities.Certificat;
 import com.fatimetou.patient.repositories.CertificatRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class CertificatService {
     @Autowired

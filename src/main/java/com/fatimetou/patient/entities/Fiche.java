@@ -11,12 +11,12 @@ public class Fiche {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private  String motifConsult ;
+
+    private String  histMalad;
     private String antecedM;
 
-    private String antecedCh;
-
     private String statusVacc;
-
     private String commentaire;
 
     @ManyToOne(optional = false)
