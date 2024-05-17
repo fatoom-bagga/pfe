@@ -20,11 +20,11 @@ public class Patient{
     private String nom;
     private String prenom;
     private String adresse;
-
+    private String sexe;
     private String  dateNaissance;
 
-    private String nationnalité;
-
+    private String nationnalite;
+    private String etatCivil;
     private String lieuNaiss;
 
     @ManyToOne

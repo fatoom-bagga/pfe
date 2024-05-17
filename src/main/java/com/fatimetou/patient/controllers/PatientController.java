@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,9 @@ public class PatientController {
 
     @GetMapping("/getAll/patient")
     public ResponseEntity<List<Patient>> getAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(patientServ.listerPatient());
+        List<Patient> patients = patientServ.listerPatient();
+        patients.sort(Comparator.comparingLong(Patient::getId));
+        return ResponseEntity.status(HttpStatus.OK).body(patients);
     }
 
     @PostMapping("/create/patient")
@@ -31,8 +34,10 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{idP}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable("idP") Long idP) {
-        return ResponseEntity.status(HttpStatus.OK).body(patientServ.getPatientById(idP));
+    public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
+        // Replace with actual logic to fetch patient details by ID
+        Patient patient = patientServ.getPatientById(id);
+        return ResponseEntity.ok(patient);
     }
 
     @PutMapping("update/patient/{id}")

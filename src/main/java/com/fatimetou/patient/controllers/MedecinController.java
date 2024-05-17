@@ -32,5 +32,11 @@ public class MedecinController {
     // public ResponseEntity<Medecin> getMedcinById(@PathVariable("id") Long id) {
     // return ResponseEntity.status(HttpStatus.OK).body(mdcServ.getMedecinById(id));
     // }
+    @GetMapping("/connected")
+    public ResponseEntity<Medecin> getConnectedMedecin() {
+        // Replace with actual logic to fetch the connected doctor's details
+        Medecin medecin = mdcServ.getConnectedMedecin();
+        return ResponseEntity.ok(medecin);
+    }
 
 }
