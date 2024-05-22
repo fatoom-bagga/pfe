@@ -22,6 +22,6 @@ public class Certificat {
     @ManyToOne(optional = false)
     private Patient patient;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Medecin medecin;
 }

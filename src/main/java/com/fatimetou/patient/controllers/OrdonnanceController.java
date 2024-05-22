@@ -24,9 +24,9 @@ public class OrdonnanceController {
         return ResponseEntity.status(HttpStatus.OK).body(ordServ.listerOrdonnance());
     }
 
-    @PostMapping("/create/ord")
-    public ResponseEntity<Ordonnance> createOrd(@RequestBody Ordonnance ord) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ordServ.createOrdonnance(ord));
+    @PostMapping("/create/ord/{patientId}")
+    public ResponseEntity<Ordonnance> createOrd(@PathVariable(name = "patientId") Long id,@RequestBody Ordonnance ord) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ordServ.createOrdonnance(id,ord));
     }
 
     @GetMapping("/ord/{id}")

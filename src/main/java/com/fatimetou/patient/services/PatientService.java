@@ -31,9 +31,26 @@ public class PatientService {
         if (updatedPatient.getAdresse() != null) {
             patient.setAdresse(updatedPatient.getAdresse());
         }
+        if (updatedPatient.getSexe() != null) {
+            patient.setSexe(updatedPatient.getSexe());
+        }
+        if (updatedPatient.getEtatCivil() != null) {
+            patient.setEtatCivil(updatedPatient.getEtatCivil());
+        }
+        if (updatedPatient.getLieuNaiss() != null) {
+            patient.setLieuNaiss(updatedPatient.getLieuNaiss());
+        }
+        if (updatedPatient.getNationnalite() != null) {
+            patient.setNationnalite(updatedPatient.getNationnalite());
+        }
 
 
-           return patientRepository.save(patient);
+
+
+
+
+
+        return patientRepository.save(patient);
     }
 
     public List<Patient> listerPatient() {

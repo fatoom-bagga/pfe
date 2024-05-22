@@ -15,13 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Medecin  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nom;
+    private String etatCivil;
+    private String nationnalite;
     private String prenom;
-    private String email;
-    private String mdp;
     private String adresse;
     @Column(nullable = false)
     private String genre;
@@ -36,8 +36,6 @@ public class Medecin  {
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
     private List<RendezVous> rendezVous;
 
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
-    private List<Ordonnance> ordonnances;
 
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
     private List<Bilan> bilans;

@@ -33,9 +33,8 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(patientServ.ajouterPatient(patient));
     }
 
-    @GetMapping("/patient/{idP}")
+    @GetMapping("/patient/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
-        // Replace with actual logic to fetch patient details by ID
         Patient patient = patientServ.getPatientById(id);
         return ResponseEntity.ok(patient);
     }

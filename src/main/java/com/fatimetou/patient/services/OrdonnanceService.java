@@ -26,39 +26,29 @@ public class OrdonnanceService {
         return ordonnanceRepository.findAll();
     }
 
-    public Ordonnance createOrdonnance(Ordonnance ordonnance) {
-        Medecin connectedMedecin = medecinService.getConnectedMedecin();
+    public Ordonnance createOrdonnance(Long patientId,Ordonnance ordonnance) {
 
 
-        if (connectedMedecin != null) {
 
-            ordonnance.setMedecin(connectedMedecin);
-        }
-        else {
-            throw new RuntimeException("Aucun médecin n'est connecté pour créer l'ordonnance.");
-        }
+        Patient patient = patientService.getPatientById(patientId);
 
-        Patient patient = ordonnance.getPatient();
-
-        if (patient != null) {
             ordonnance.setPatient(patient);
-        }
-        else {
-            throw new RuntimeException("Aucun patient n'est associé à cette ordonnance.");
-        }
+            //ordonance.set(getConnectedUser)
+
         return ordonnanceRepository.save(ordonnance);
     }
 
 
     public Ordonnance getOrdonnanceById(Long idOrd) {
-        return ordonnanceRepository.findById(idOrd).
-                orElseThrow(() -> new EntityNotFoundException("Prescription not found with id " + idOrd));
+        return ordonnanceRepository.findById(idOrd)
+                .orElseThrow(() -> new EntityNotFoundException("Prescription not found with id " + idOrd));
     }
     public Ordonnance modifierOrd(Ordonnance updateOrd, Long id) {
-        Ordonnance ord=ordonnanceRepository.findById(id).orElseThrow(()->new OrdNotFoundException(id));
+        Ordonnance ord = ordonnanceRepository.findById(id).orElseThrow(() -> new OrdNotFoundException(id));
+        ord.setDate(updateOrd.getDate());
 
-
-
+        ord.setPatient(updateOrd.getPatient());
+        ord.setMedicaments(updateOrd.getMedicaments());
         return ordonnanceRepository.save(ord);
     }
 }

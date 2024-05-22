@@ -1,4 +1,5 @@
 package com.fatimetou.patient.entities;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class Patient{
     private List<RendezVous> rendezVous ;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Ordonnance> ordonnances;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -28,6 +28,6 @@ public class Bilan {
     @ManyToOne(optional = false)
     private Patient patient;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Medecin medecin;
 }

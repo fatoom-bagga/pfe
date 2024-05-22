@@ -1,5 +1,6 @@
 package com.fatimetou.patient.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,6 @@ public class Medicament {
 
     @ManyToOne
     @JoinColumn(name = "ordonnance_id")
+    @JsonBackReference
     private Ordonnance ordonnance;
 }

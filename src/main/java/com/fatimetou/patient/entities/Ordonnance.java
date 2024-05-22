@@ -1,4 +1,5 @@
 package com.fatimetou.patient.entities;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import org.hibernate.type.TrueFalseConverter;
 
@@ -11,19 +12,23 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Ordonnance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idOrd;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonBackReference
     private Patient patient;
 
-    @ManyToOne(optional = false)
-    private Medecin medecin;
+
     private Date date;
 
-    @OneToMany(mappedBy = "ordonnance", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "ordonnance", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Medicament> medicaments;
 
 
