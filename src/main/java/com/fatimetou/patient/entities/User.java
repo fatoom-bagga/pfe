@@ -1,5 +1,6 @@
 package com.fatimetou.patient.entities;
 
+import com.fatimetou.patient.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,13 +25,13 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    private String role;  // "RECEPTIONIST" ou "DOCTOR"
+    private Role role;  // "RECEPTIONIST" ou "DOCTOR"
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return role;
+                return role.name();
             }
         });
     }
