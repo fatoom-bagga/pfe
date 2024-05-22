@@ -14,7 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Receptionniste extends User {
+public class Receptionniste {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL)
     private List<Medecin> medecins;
