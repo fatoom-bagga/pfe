@@ -6,6 +6,7 @@ import com.fatimetou.patient.entities.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.fatimetou.patient.entities.Ordonnance;
@@ -19,6 +20,8 @@ public class OrdonnanceController {
     @Autowired
     OrdonnanceService ordServ;
 
+    //Ha4e exemple ykank tgouli 3an 4i endpoint ygd yd5lhe la 7ad 3ndou role MEDECIN
+    @PreAuthorize("hasAuthority('MEDECIN')")
     @GetMapping("/getAll/ord")
     public ResponseEntity<List<Ordonnance>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(ordServ.listerOrdonnance());
