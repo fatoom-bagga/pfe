@@ -1,10 +1,7 @@
 package com.fatimetou.patient.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,8 +10,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Medecin  {
+@Builder
+public class Medecin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +20,11 @@ public class Medecin  {
     private String nationnalite;
     private String prenom;
     private String adresse;
-    @Column(nullable = false)
+    @Column()
     private String genre;
 
     private String type;
-    @ManyToOne(optional = false)
+    @ManyToOne()
     private Receptionniste receptionniste;
 
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
@@ -42,9 +39,9 @@ public class Medecin  {
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
     private List<Certificat> certificats;
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
-    private List<Fiche> fiches ;
+    private List<Fiche> fiches;
 
-
-
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    private User user;
 
 }

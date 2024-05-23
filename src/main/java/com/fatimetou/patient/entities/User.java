@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
@@ -24,6 +25,12 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private Receptionniste receptionniste;
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private Medecin medecin;
 
     private Role role;  // "RECEPTIONIST" ou "DOCTOR"
 
@@ -41,18 +48,18 @@ public class User implements UserDetails {
     }
 
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
