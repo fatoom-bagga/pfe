@@ -20,9 +20,14 @@ public class Ordonnance {
     private long idOrd;
 
     @ManyToOne(optional = true)
+    @JoinColumn(name = "patient_id")
     @JsonBackReference
     private Patient patient;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medecin_id")
+    private Medecin medecin;
 
     private Date date;
 

@@ -25,9 +25,7 @@ public class RendezVousService {
         if (rendezVous.getDate() != null) {
             rendv.setDate(rendezVous.getDate());
         }
-        if (rendezVous.getStatus() != null) {
-            rendv.setStatus(rendezVous.getStatus());
-        }
+
         return rendezVousRepository.save(rendv);
     }
 

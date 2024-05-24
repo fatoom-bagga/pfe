@@ -14,14 +14,12 @@ import com.fatimetou.patient.services.OrdonnanceService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/element")
 public class OrdonnanceController {
 
     @Autowired
     OrdonnanceService ordServ;
 
-    //Ha4e exemple ykank tgouli 3an 4i endpoint ygd yd5lhe la 7ad 3ndou role MEDECIN
-    @PreAuthorize("hasAuthority('MEDECIN')")
     @GetMapping("/getAll/ord")
     public ResponseEntity<List<Ordonnance>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(ordServ.listerOrdonnance());

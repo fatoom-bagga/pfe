@@ -12,7 +12,7 @@ import com.fatimetou.patient.services.RendezVousService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/rdv")
 public class RendezVousController {
 
     @Autowired

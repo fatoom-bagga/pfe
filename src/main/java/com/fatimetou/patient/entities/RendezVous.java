@@ -18,15 +18,18 @@ public class RendezVous {
     @Column(nullable = false, updatable = true)
     private Date date;
     private String motif;
-
-    private RendezVousStatus status;
-
     private LocalTime heure;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medecin_id")
+    private Medecin medecin;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(optional = true)
-    private Medecin medecin;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "receptionniste_id")
+    private Receptionniste receptionniste;
 }
 

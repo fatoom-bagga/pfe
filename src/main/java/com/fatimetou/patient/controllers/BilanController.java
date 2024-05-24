@@ -11,7 +11,7 @@ import com.fatimetou.patient.entities.Bilan;
 import com.fatimetou.patient.services.BilanService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/element")
 public class BilanController {
 
     @Autowired

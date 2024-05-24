@@ -19,9 +19,12 @@ public class Certificat {
 
     @Column(nullable = false)
     private Date date;
-    @ManyToOne(optional = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medecin_id")
     private Medecin medecin;
 }

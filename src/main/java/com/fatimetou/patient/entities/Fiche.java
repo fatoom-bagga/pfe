@@ -20,8 +20,10 @@ public class Fiche {
     private String commentaire;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "medecin_id")
     private Medecin medecin;
 
     @OneToOne(mappedBy = "fiche")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 }

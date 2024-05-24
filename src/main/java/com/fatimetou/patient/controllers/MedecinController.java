@@ -12,7 +12,7 @@ import com.fatimetou.patient.services.MedecinService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/medecin")
 public class MedecinController {
 
     @Autowired

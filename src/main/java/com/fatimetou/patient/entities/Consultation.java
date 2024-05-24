@@ -32,9 +32,11 @@ public class Consultation {
     @Column(nullable = false, updatable = true)
     private int diagnostique;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medecin_id")
     private Medecin medecin;
 }

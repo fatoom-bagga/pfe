@@ -12,7 +12,7 @@ import com.fatimetou.patient.repositories.CertificatRepository;
 import com.fatimetou.patient.services.CertificatService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/element")
 public class CertificatController {
     @Autowired
     CertificatService certificatService;

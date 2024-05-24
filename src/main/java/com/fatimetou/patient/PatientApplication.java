@@ -48,6 +48,7 @@ public class PatientApplication {
 			if(userTwo == null){
 				User user2 = User.builder()
 						.name("Receptioniste")
+						.role(Role.RECEPTIONNISTE)
 						.email("receptionniste@gmail.com")
 						.password(passwordEncoder.encode("12345"))
 						.build();

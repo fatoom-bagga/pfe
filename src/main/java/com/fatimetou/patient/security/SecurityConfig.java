@@ -36,8 +36,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(ar -> ar.requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(ar -> ar
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers("/api/patient/**").hasAnyRole("RECEPTIONNISTE", "MEDECIN")
+                        .requestMatchers("/api/medecin/**").hasRole("RECEPTIONNISTE")
+                        .requestMatchers("/api/rdv/**").hasAnyRole("RECEPTIONNISTE", "MEDECIN")
+                        .requestMatchers("/api/element/**").hasRole("MEDECIN")
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider())

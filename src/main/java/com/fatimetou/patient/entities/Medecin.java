@@ -24,21 +24,19 @@ public class Medecin {
     private String genre;
 
     private String type;
-    @ManyToOne()
-    private Receptionniste receptionniste;
 
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Consultation> consultations;
 
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RendezVous> rendezVous;
 
 
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Bilan> bilans;
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Certificat> certificats;
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Fiche> fiches;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)

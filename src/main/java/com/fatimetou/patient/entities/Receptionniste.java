@@ -17,12 +17,14 @@ public class Receptionniste {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @OneToOne(cascade = CascadeType.ALL,optional = false,fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL)
-    private List<Medecin> medecins;
-    @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL)
-    private List<Patient> patients;
+    @OneToMany(mappedBy = "receptionniste", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RendezVous> rendezVous;
+
+
+
 
 }
